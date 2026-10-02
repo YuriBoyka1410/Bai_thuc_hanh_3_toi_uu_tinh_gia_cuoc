@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Luyện tập với cấu trúc if-else</title>
+  </head>
+  <body>
+    <h2>Luyện tập với cấu trúc if-else</h2>
+    <script>
+      //Yêu cầu nhập tiên người dùng
+      let userName = prompt("Who's there", "");
+
+      if (userName == "Admin") {
+        //Nếu là Admin thì yêu cầu nhập mật khẩu
+        let pass = prompt("Password", "");
+        if (pass === "The Master") {
+          alert("welcome!");
+        } else if (pass === null || pass === "") {
+          alert("Canceled.");
+        } else {
+          alert("Wrong password");
+        }
+      } else if (userName === null || userName === "") {
+        alert("Canceled");
+      } else {
+        alert("I don't know you");
+      }
+    </script>
+  </body>
+</html>
