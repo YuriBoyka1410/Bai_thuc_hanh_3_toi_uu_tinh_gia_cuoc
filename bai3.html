@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FastTrack Logistics Shipping Calculator</title>
+  </head>
+  <body>
+    <h2>Hệ thống tính cước vận chuyển - FastTrack Logistic</h2>
+    <div id="output"></div>
+
+    <script>
+      function calculateShippingFee(serviceType, weight) {
+        let baseFee = 0;
+        let surcharge = 0;
+
+        // Giai đoạn 1: Chọn giá nền theo loại dịch vụ
+        switch (serviceType) {
+          case "STANDARD":
+            baseFee = 20000;
+            break;
+          case "EXPRESS":
+            baseFee = 40000;
+            break;
+          case "SAME_DAY":
+            baseFee = 80000;
+            break;
+          default:
+            return "Lỗi: Loại dịch vụ không hợp lệ!";
+        }
+
+        // Giai đoạn 2: Tính phụ phí theo khối lượng
+        if (weight < 0) {
+          return "Lỗi: Khối lượng không hợp lệ!";
+        } else if (weight < 5) {
+          surcharge = 0;
+        } else if (weight <= 20) {
+          surcharge = 10000;
+        } else {
+          surcharge = 50000;
+        }
+        return baseFee + surcharge;
+      }
+
+      // Khu vực thử nghiệm
+      const results = [];
+      results.push(
+        "Cước giao chuẩn 3kg: " + calculateShippingFee("STANDARD", 3),
+      );
+      results.push(
+        "Cước giao nhanh 10kg: " + calculateShippingFee("EXPRESS", 10),
+      );
+      results.push(
+        "Cước giao hỏa tốc 25kg: " + calculateShippingFee("SAME_DAY", 25),
+      );
+      results.push(
+        "Dịch vụ không hợp lệ: " + calculateShippingFee("SUPER_FAST", 5),
+      );
+      document.getElementById("output").innerHTML = results.join("<br>");
+    </script>
+  </body>
+</html>
